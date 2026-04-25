@@ -1,0 +1,342 @@
+/* ============================================
+   LAYOUT COMPACTO GLOBAL - XTREAM SERVER
+   Ajusta todo o sistema para caber mais informações
+   ============================================ */
+
+/* Reduz fonte base do corpo */
+body {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+}
+
+/* Títulos menores */
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.1em !important;
+    margin-bottom: 0.5rem !important;
+    font-weight: 600 !important;
+}
+
+h1 { font-size: 1.3em !important; }
+h2 { font-size: 1.2em !important; }
+
+/* Cards do Dashboard mais compactos */
+.card, .info-box {
+    padding: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.card-header, .info-box-header {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.85em !important;
+}
+
+.card-body, .info-box-body {
+    padding: 0.5rem !important;
+}
+
+/* Ícones menores nos cards */
+.card .icon, .info-box .icon {
+    font-size: 1.5rem !important;
+    width: 40px !important;
+    height: 40px !important;
+    line-height: 40px !important;
+}
+
+/* Números grandes dos cards */
+.card .number, .info-box .number {
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+}
+
+/* Tabelas compactas */
+.table {
+    font-size: 0.85em !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.table th, .table td {
+    padding: 0.35rem 0.5rem !important;
+    vertical-align: middle !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 200px !important;
+}
+
+.table th {
+    font-size: 0.8em !important;
+    font-weight: 600 !important;
+    background-color: #f8f9fa !important;
+}
+
+/* Botões menores */
+.btn {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.85em !important;
+    margin: 0.1rem !important;
+}
+
+.btn-sm {
+    padding: 0.15rem 0.35rem !important;
+    font-size: 0.75em !important;
+}
+
+/* Formulários compactos */
+.form-control, .form-select {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.85em !important;
+    height: auto !important;
+}
+
+.form-label {
+    font-size: 0.85em !important;
+    margin-bottom: 0.2rem !important;
+    font-weight: 600 !important;
+}
+
+.form-group {
+    margin-bottom: 0.5rem !important;
+}
+
+.input-group-text {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.85em !important;
+}
+
+/* Badges menores */
+.badge {
+    font-size: 0.7em !important;
+    padding: 0.25em 0.5em !important;
+}
+
+/* Menu lateral ajustado */
+.navigation ul li a .text {
+    font-size: 0.75em !important;
+    padding: 0 10px !important;
+}
+
+.navigation ul li a .icon {
+    font-size: 1.1em !important;
+    min-width: 20px !important;
+    height: 20px !important;
+}
+
+/* Conteúdo principal com menos margem */
+main.page-content {
+    padding: 0.5rem !important;
+    margin-top: 2.5rem !important;
+}
+
+/* Container fluido com padding reduzido */
+.container-fluid {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+}
+
+/* Row com menos gutter */
+.row {
+    margin-left: -0.25rem !important;
+    margin-right: -0.25rem !important;
+}
+
+.col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, 
+.col-7, .col-8, .col-9, .col-10, .col-11, .col-12,
+.col-sm, .col-md, .col-lg, .col-xl {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+}
+
+/* Alertas menores */
+.alert {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.85em !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Navbar compacta */
+.navbar {
+    padding: 0.25rem 0.5rem !important;
+    min-height: 45px !important;
+}
+
+.navbar-brand {
+    font-size: 1em !important;
+    padding: 0.25rem 0.5rem !important;
+}
+
+.nav-link {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.85em !important;
+}
+
+/* Dropdowns menores */
+.dropdown-menu {
+    font-size: 0.85em !important;
+    padding: 0.25rem 0 !important;
+}
+
+.dropdown-item {
+    padding: 0.25rem 1rem !important;
+    font-size: 0.85em !important;
+}
+
+/* Modais compactos */
+.modal-header, .modal-footer {
+    padding: 0.5rem 0.75rem !important;
+}
+
+.modal-body {
+    padding: 0.75rem !important;
+}
+
+.modal-title {
+    font-size: 1em !important;
+}
+
+/* Tabs menores */
+.nav-tabs .nav-link {
+    padding: 0.35rem 0.6rem !important;
+    font-size: 0.85em !important;
+}
+
+/* Paginação compacta */
+.pagination {
+    margin-bottom: 0.5rem !important;
+}
+
+.page-link {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.85em !important;
+}
+
+/* Breadcrumbs menores */
+.breadcrumb {
+    padding: 0.25rem 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 0.85em !important;
+}
+
+.breadcrumb-item {
+    font-size: 0.85em !important;
+}
+
+/* List groups compactos */
+.list-group-item {
+    padding: 0.35rem 0.75rem !important;
+    font-size: 0.85em !important;
+}
+
+/* Progress bars menores */
+.progress {
+    height: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Tooltips menores */
+.tooltip {
+    font-size: 0.75em !important;
+}
+
+/* Custom scrollbars para economizar espaço */
+::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1 !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888 !important;
+    border-radius: 3px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555 !important;
+}
+
+/* Ajustes específicos para tabelas de dados DataTables */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+    font-size: 0.85em !important;
+    margin: 0.25rem 0 !important;
+}
+
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    padding: 0.2rem 0.4rem !important;
+    font-size: 0.85em !important;
+    margin-left: 0.25rem !important;
+    margin-right: 0.25rem !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0.25rem 0.5rem !important;
+    margin: 0 0.1rem !important;
+    font-size: 0.85em !important;
+}
+
+/* Ajuste para colapsar conteúdo muito largo */
+.text-truncate-custom {
+    max-width: 150px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+/* Reduzir espaçamento entre elementos */
+.mb-1, .my-1 { margin-bottom: 0.25rem !important; }
+.mb-2, .my-2 { margin-bottom: 0.5rem !important; }
+.mb-3, .my-3 { margin-bottom: 0.75rem !important; }
+.mt-1, .mt-2, .mt-3 { margin-top: 0.25rem !important; }
+.p-1, .py-1, .px-1 { padding: 0.25rem !important; }
+.p-2, .py-2, .px-2 { padding: 0.5rem !important; }
+
+/* Media queries para telas menores */
+@media (max-width: 768px) {
+    body {
+        font-size: 11px !important;
+    }
+    
+    .table th, .table td {
+        padding: 0.25rem 0.35rem !important;
+        font-size: 0.8em !important;
+    }
+    
+    .card, .info-box {
+        padding: 0.35rem !important;
+    }
+    
+    main.page-content {
+        padding: 0.25rem !important;
+    }
+}
+
+/* Forçar quebra de texto em colunas específicas */
+.col-break-word {
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    max-width: 120px !important;
+}
+
+/* Esconder colunas menos importantes em telas pequenas */
+@media (max-width: 992px) {
+    .hide-on-mobile {
+        display: none !important;
+    }
+}
+
+/* Ajuste para ações da tabela */
+.table-actions {
+    white-space: nowrap !important;
+    min-width: 120px !important;
+}
+
+.table-actions .btn {
+    padding: 0.15rem 0.3rem !important;
+    font-size: 0.7em !important;
+}

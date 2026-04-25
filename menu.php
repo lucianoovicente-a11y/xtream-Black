@@ -41,6 +41,7 @@ $host_dinamico = '//' . $_SERVER['HTTP_HOST'];
     
     <link rel="stylesheet" type="text/css" href="/css/menu.css">
     <link rel="stylesheet" type="text/css" href="/css/retro.css">
+    <link rel="stylesheet" type="text/css" href="/css/layout-compacto-global.css">
 
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
