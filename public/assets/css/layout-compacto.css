@@ -146,3 +146,62 @@ h3 { font-size: 13px !important; }
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
 }
+
+/* TABELAS ULTRA COMPACTAS - FORÇAR ESTREITAMENTO MÁXIMO */
+table.dataTable, table.table {
+    border-collapse: collapse !important;
+    font-size: 10px !important; /* Fonte mínima */
+}
+
+table.dataTable thead th, 
+table.dataTable thead td,
+table.table thead th,
+table.table thead td {
+    padding: 4px 6px !important; /* Cabeçalho mínimo */
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+    border-bottom: 2px solid #ddd !important;
+}
+
+table.dataTable tbody td,
+table.table tbody td {
+    padding: 3px 5px !important; /* Célula ultra mínima */
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+    vertical-align: middle !important;
+    word-break: break-word !important;
+    max-width: 180px !important; /* Limite mais estreito */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Colunas específicas ultra estreitas */
+table.dataTable td.actions,
+table.dataTable td.status,
+table.dataTable td.id,
+table.table td.actions,
+table.table td.status,
+table.table td.id {
+    width: 1% !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+}
+
+/* Ajuste para DataTables buttons */
+.dt-buttons {
+    margin-bottom: 5px !important;
+}
+.dt-buttons .btn {
+    padding: 2px 6px !important;
+    font-size: 9px !important;
+}
+
+/* Scrollbar fina na tabela */
+.table-responsive::-webkit-scrollbar {
+    height: 5px !important;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #ccc !important;
+    border-radius: 3px !important;
+}
