@@ -40,6 +40,7 @@ $host_dinamico = '//' . $_SERVER['HTTP_HOST'];
     <link rel="shortcut icon" href="<?php echo htmlspecialchars($config['logo_path']); ?>">
     
     <!-- CSS FINAL DEFINITIVO - PRIMEIRO PARA GARANTIR PRIORIDADE -->
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/layout-final-correcao.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="/public/assets/css/layout-final-definitivo.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="/css/layout-ultra-compacto.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="/css/menu.css">
