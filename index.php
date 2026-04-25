@@ -1,7 +1,7 @@
 <?php  
 session_start();
 
-include "./configuracoes/functions.php";
+include "./functions.php";
 include "./autoload.php";
 
 $session = new Sessao();
