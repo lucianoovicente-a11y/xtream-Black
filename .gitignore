@@ -1,77 +1,47 @@
-# Documentation
-*.md
-
-# Logs and temp files
-*.log
-*.tmp
-
-# Environment
-.env
-.env.local
-*.env.*
-
-# Editors
-.vscode/
-.idea/
-
-# Dependencies
-node_modules/
-vendor/
-*.lock
-
-# Build artifacts
-dist/
-build/
+```php
+# Compiled and build artifacts
 *.pyc
 __pycache__/
-*.class
 *.o
 *.obj
-*.exe
-*.dll
-*.so
-*.a
-*.out
+dist/
+build/
+target/
 
-# System files
-.DS_Store
-Thumbs.db
-.git/
-
-# Coverage
+# Dependencies
+.venv/
+venv/
+node_modules/
+.julia/
+zig*/
+.jdk/
+.gradle/
+.mypy_cache/
+.pytest_cache/
 coverage/
 htmlcov/
 .coverage
 
-# Python specific
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-.venv/
-pip-log.txt
-pip-delete-this-directory.txt
-.tox/
-.coverage
-.nox/
-__pycache__/
-.pytest_cache/
-.mypy_cache/
-
-# PHP specific
-*.php~
-*.php.bak
+# Logs and temp files
 *.log
-.svn/
-CVS/
-nbproject/
-.settings/
+*.tmp
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+.env.*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System
 .DS_Store
 Thumbs.db
-composer.lock
-vendor/
 
 # Compressed files
 *.zip
@@ -96,3 +66,4 @@ vendor/
 *.tar.bz2
 *.tar.xz
 *.tar.zst
+```

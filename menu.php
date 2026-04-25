@@ -132,6 +132,9 @@ $host_dinamico = '//' . $_SERVER['HTTP_HOST'];
     <div class="container-fluid mb-3 menu-perfil p-0">
         <div class="align-items-center d-flex justify-content-center mb-1 menu-perfil1 p-2 pb-3 pt-4">
             <div class="justify-content-center align-items-center menu-perfil1">
+                <div class="mb-4 perfil-foto" style="text-align: center;">
+                    <img alt="logo" src="<?php echo htmlspecialchars($config['logo_path']); ?>" width="80px" height="80px" class="logo" style="border-radius: 12px; border: 3px solid var(--accent); margin-bottom: 15px;">
+                </div>
                 <div class="mb-4 perfil-foto">
                     <div class="m-auto mb-1 rounded-circle overflow-hidden">
                         <img class="img-fluid" src="<?php echo $host_dinamico; ?>/img/user.png" alt="">
