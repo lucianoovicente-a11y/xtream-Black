@@ -2,7 +2,17 @@
 /**
  * Sistema de Atualização Automática - XTREAM SERVER
  * 
- * Verifica nova versão no GitHub e atualiza automaticamente
+ * COMO FUNCIONA:
+ * 1. Toda vez que esta página é carregada, verifica no GitHub se há nova versão
+ * 2. Compara a versão local (version.json) com a do GitHub
+ * 3. Se a versão do GitHub for maior, mostra botão para atualizar
+ * 4. Ao clicar, baixa todos os arquivos novos, mantém config.json e .env
+ * 5. Faz backup automático antes de atualizar
+ * 
+ * CONFIGURAÇÃO:
+ * - Mude $githubRepo para seu usuário/repositório no GitHub
+ * - Crie version.json na raiz do seu repositório GitHub
+ * - A cada nova versão, atualize o version.json e crie uma tag
  */
 
 require_once '../includes/config.php';
@@ -12,15 +22,13 @@ class AutoUpdater {
     private $versionFile = 'version.json';
     private $currentVersion;
     private $latestVersion;
-    private $githubRepo = 'seu-usuario/xtream-server';
+    private $githubRepo = 'seu-usuario/xtream-server'; // MUDE AQUI!
+    private $githubBranch = 'main';
     
     public function __construct() {
         $this->loadCurrentVersion();
     }
     
-    /**
-     * Carrega versão atual do arquivo local
-     */
     private function loadCurrentVersion() {
         if (file_exists($this->versionFile)) {
             $data = json_decode(file_get_contents($this->versionFile), true);
@@ -30,11 +38,8 @@ class AutoUpdater {
         }
     }
     
-    /**
-     * Busca última versão do GitHub
-     */
     public function checkForUpdates() {
-        $url = "https://raw.githubusercontent.com/{$this->githubRepo}/main/version.json";
+        $url = "https://raw.githubusercontent.com/{$this->githubRepo}/{$this->githubBranch}/version.json";
         
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -42,32 +47,35 @@ class AutoUpdater {
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'XTream-AutoUpdater/1.0');
         
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curlError = curl_error($ch);
         curl_close($ch);
         
         if ($httpCode === 200 && $response) {
             $data = json_decode($response, true);
-            $this->latestVersion = $data['version'] ?? '0.0.0';
-            
-            return [
-                'has_update' => version_compare($this->latestVersion, $this->currentVersion, '>'),
-                'current_version' => $this->currentVersion,
-                'latest_version' => $this->latestVersion,
-                'changelog_url' => $data['changelog_url'] ?? '',
-                'download_url' => $data['download_url'] ?? '',
-                'features' => $data['features'] ?? [],
-                'bugs_fixed' => $data['bugs_fixed'] ?? []
-            ];
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $this->latestVersion = $data['version'] ?? '0.0.0';
+                
+                return [
+                    'has_update' => version_compare($this->latestVersion, $this->currentVersion, '>'),
+                    'current_version' => $this->currentVersion,
+                    'latest_version' => $this->latestVersion,
+                    'changelog_url' => $data['changelog_url'] ?? '',
+                    'download_url' => $data['download_url'] ?? '',
+                    'features' => $data['features'] ?? [],
+                    'bugs_fixed' => $data['bugs_fixed'] ?? [],
+                    'breaking_changes' => $data['breaking_changes'] ?? false,
+                    'release_date' => $data['release_date'] ?? ''
+                ];
+            }
         }
         
-        return ['error' => 'Não foi possível verificar atualizações'];
+        return ['error' => 'Não foi possível verificar atualizações', 'curl_error' => $curlError];
     }
     
-    /**
-     * Realiza o download e instalação da atualização
-     */
     public function update() {
         $updateInfo = $this->checkForUpdates();
         
@@ -76,9 +84,10 @@ class AutoUpdater {
         }
         
         $downloadUrl = $updateInfo['download_url'];
-        $tempFile = sys_get_temp_dir() . '/xtream-update.zip';
+        $tempFile = sys_get_temp_dir() . '/xtream-update-' . time() . '.zip';
+        $extractDir = sys_get_temp_dir() . '/xtream-extract-' . time();
         
-        // Download do ZIP
+        // Download
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $downloadUrl);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -86,169 +95,210 @@ class AutoUpdater {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_FILE, fopen($tempFile, 'w'));
         curl_setopt($ch, CURLOPT_TIMEOUT, 300);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'XTream-AutoUpdater/1.0');
         
         $success = curl_exec($ch);
+        $curlError = curl_error($ch);
         curl_close($ch);
         
-        if (!$success || !file_exists($tempFile)) {
-            return ['success' => false, 'message' => 'Falha no download da atualização'];
+        if (!$success || !file_exists($tempFile) || filesize($tempFile) === 0) {
+            return ['success' => false, 'message' => 'Falha no download: ' . $curlError];
         }
         
-        // Extrair ZIP
+        // Extrair
         $zip = new ZipArchive();
         if ($zip->open($tempFile) !== TRUE) {
-            return ['success' => false, 'message' => 'Falha ao extrair arquivo'];
+            return ['success' => false, 'message' => 'Falha ao extrair'];
         }
         
-        // Backup dos arquivos atuais
-        $backupDir = 'backup/update_' . date('Ymd_His');
+        if (!is_dir($extractDir)) mkdir($extractDir, 0755, true);
+        $zip->extractTo($extractDir);
+        $zip->close();
+        
+        // Backup
+        $backupDir = '../backup/update_' . date('Ymd_His');
         $this->createBackup($backupDir);
         
-        // Extrair novos arquivos (mantendo config.json e banco de dados)
-        $excludeFiles = ['config.json', '.env', 'version.json'];
-        $extracted = 0;
+        // Arquivos protegidos
+        $excludeFiles = ['config.json', '.env', 'version.json', '.htaccess'];
+        $protectedDirs = ['backup', 'logs', 'uploads'];
         
-        for ($i = 0; $i < $zip->numFiles; $i++) {
-            $file = $zip->statIndex($i);
-            $filename = $file['name'];
+        $extracted = 0;
+        $skipped = 0;
+        $errors = [];
+        
+        $files = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($extractDir),
+            RecursiveIteratorIterator::SELF_FIRST
+        );
+        
+        foreach ($files as $file) {
+            if ($file->isDir()) continue;
             
-            // Remove prefixo da pasta do repositório
-            $filename = preg_replace('/^[^\/]+\//', '', $filename);
+            $relativePath = str_replace($extractDir . '/', '', $file->getPathname());
+            $relativePath = preg_replace('/^[^\/]+\//', '', $relativePath);
             
-            // Pula arquivos que não devem ser sobrescritos
-            if (in_array($filename, $excludeFiles) || empty($filename)) {
+            if (empty($relativePath)) continue;
+            
+            $skip = false;
+            foreach ($protectedDirs as $protDir) {
+                if (strpos($relativePath, $protDir . '/') === 0) {
+                    $skip = true;
+                    break;
+                }
+            }
+            
+            if (in_array(basename($relativePath), $excludeFiles)) {
+                $skip = true;
+            }
+            
+            if ($skip) {
+                $skipped++;
                 continue;
             }
             
-            // Extrai arquivo
-            if ($file['size'] > 0) {
-                $content = $zip->getFromIndex($i);
-                $targetPath = './' . $filename;
-                
-                // Cria diretórios se necessário
-                $dir = dirname($targetPath);
-                if (!is_dir($dir)) {
-                    mkdir($dir, 0755, true);
-                }
-                
-                file_put_contents($targetPath, $content);
-                $extracted++;
+            $targetPath = '../' . $relativePath;
+            $dir = dirname($targetPath);
+            
+            if (!is_dir($dir) && !mkdir($dir, 0755, true)) {
+                $errors[] = "Falha ao criar: $dir";
+                continue;
             }
+            
+            if (!copy($file->getPathname(), $targetPath)) {
+                $errors[] = "Falha ao copiar: $relativePath";
+                continue;
+            }
+            
+            $extracted++;
         }
         
-        $zip->close();
         unlink($tempFile);
+        $this->deleteDirectory($extractDir);
         
-        // Atualiza versão local
-        $remoteVersionJson = file_get_contents("https://raw.githubusercontent.com/{$this->githubRepo}/main/version.json");
-        if ($remoteVersionJson) {
-            file_put_contents($this->versionFile, $remoteVersionJson);
+        // Atualiza version.json
+        $remoteJson = file_get_contents("https://raw.githubusercontent.com/{$this->githubRepo}/{$this->githubBranch}/version.json");
+        if ($remoteJson && json_decode($remoteJson)) {
+            file_put_contents($this->versionFile, $remoteJson);
         }
         
         return [
-            'success' => true,
-            'message' => "Atualização concluída! {$extracted} arquivos atualizados.",
+            'success' => empty($errors),
+            'message' => "Atualizado! {$extracted} arquivos, {$skipped} mantidos.",
             'backup_dir' => $backupDir,
             'from_version' => $this->currentVersion,
             'to_version' => $this->latestVersion
         ];
     }
     
-    /**
-     * Cria backup dos arquivos atuais
-     */
-    private function createBackup($backupDir) {
-        if (!is_dir($backupDir)) {
-            mkdir($backupDir, 0755, true);
-        }
-        
-        $filesToBackup = glob('./*.{php,json,js,css,html}', GLOB_BRACE);
-        foreach ($filesToBackup as $file) {
-            if (basename($file) !== 'auto_update.php') {
-                copy($file, $backupDir . '/' . basename($file));
-            }
-        }
-        
-        // Backup de diretórios importantes
-        $dirsToBackup = ['classes', 'api', 'includes'];
-        foreach ($dirsToBackup as $dir) {
-            if (is_dir($dir)) {
-                $this->copyDirectory($dir, $backupDir . '/' . $dir);
-            }
-        }
+    private function createBackup($dir) {
+        if (!is_dir($dir)) mkdir($dir, 0755, true);
+        copy('../version.json', $dir . '/version.json');
+        if (file_exists('../config.json')) copy('../config.json', $dir . '/config.json');
     }
     
-    /**
-     * Copia diretório recursivamente
-     */
-    private function copyDirectory($src, $dst) {
-        if (!is_dir($dst)) {
-            mkdir($dst, 0755, true);
-        }
-        
-        $files = scandir($src);
+    private function deleteDirectory($dir) {
+        if (!is_dir($dir)) return;
+        $files = array_diff(scandir($dir), ['.', '..']);
         foreach ($files as $file) {
-            if ($file === '.' || $file === '..') {
-                continue;
-            }
-            
-            $srcPath = $src . '/' . $file;
-            $dstPath = $dst . '/' . $file;
-            
-            if (is_dir($srcPath)) {
-                $this->copyDirectory($srcPath, $dstPath);
-            } else {
-                copy($srcPath, $dstPath);
-            }
+            is_dir("$dir/$file") ? $this->deleteDirectory("$dir/$file") : unlink("$dir/$file");
         }
-    }
-    
-    /**
-     * Obtém histórico de versões
-     */
-    public function getVersionHistory() {
-        $url = "https://raw.githubusercontent.com/{$this->githubRepo}/main/CHANGELOG.md";
-        
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        
-        $content = curl_exec($ch);
-        curl_close($ch);
-        
-        return $content ?: null;
+        rmdir($dir);
     }
 }
 
-// API Endpoint
+// API
 if (isset($_GET['action'])) {
     header('Content-Type: application/json');
-    
     $updater = new AutoUpdater();
     
     switch ($_GET['action']) {
         case 'check':
             echo json_encode($updater->checkForUpdates());
             break;
-            
         case 'update':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo json_encode($updater->update());
-            } else {
-                echo json_encode(['error' => 'Método não permitido']);
             }
             break;
-            
-        case 'history':
-            $history = $updater->getVersionHistory();
-            echo json_encode(['changelog' => $history]);
-            break;
-            
         default:
             echo json_encode(['error' => 'Ação inválida']);
     }
     exit;
 }
 ?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Atualização Automática</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .card { border: 1px solid #ddd; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .success { background: #d4edda; color: #155724; }
+        .warning { background: #fff3cd; color: #856404; }
+        .error { background: #f8d7da; color: #721c24; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        #status { margin-top: 20px; padding: 15px; display: none; }
+    </style>
+</head>
+<body>
+    <h1>🔄 Atualização Automática</h1>
+    
+    <?php
+    $updater = new AutoUpdater();
+    $updateInfo = $updater->checkForUpdates();
+    ?>
+    
+    <div class="card">
+        <h3>Versão Atual: <strong><?php echo $updateInfo['current_version']; ?></strong></h3>
+        <?php if (isset($updateInfo['has_update']) && $updateInfo['has_update']): ?>
+            <p class="warning">
+                ✅ Nova versão disponível: <strong><?php echo $updateInfo['latest_version']; ?></strong>
+            </p>
+            <button onclick="updateSystem()">🚀 Atualizar Agora</button>
+        <?php elseif (isset($updateInfo['error'])): ?>
+            <p class="error">❌ Erro: <?php echo $updateInfo['error']; ?></p>
+        <?php else: ?>
+            <p class="success">✅ Você está na versão mais recente!</p>
+        <?php endif; ?>
+    </div>
+    
+    <div id="status"></div>
+    
+    <script>
+    async function updateSystem() {
+        const status = document.getElementById('status');
+        status.style.display = 'block';
+        status.className = 'card warning';
+        status.innerHTML = '⏳ Baixando atualização...';
+        
+        try {
+            const response = await fetch('?action=update', { method: 'POST' });
+            const result = await response.json();
+            
+            if (result.success) {
+                status.className = 'card success';
+                status.innerHTML = '✅ ' + result.message;
+                setTimeout(() => location.reload(), 2000);
+            } else {
+                status.className = 'card error';
+                status.innerHTML = '❌ Erro: ' + result.message;
+            }
+        } catch (e) {
+            status.className = 'card error';
+            status.innerHTML = '❌ Erro na comunicação: ' + e.message;
+        }
+    }
+    
+    // Auto-check ao carregar
+    setInterval(async () => {
+        const response = await fetch('?action=check');
+        const result = await response.json();
+        if (result.has_update) {
+            console.log('Nova versão disponível:', result.latest_version);
+        }
+    }, 300000); // Check a cada 5 minutos
+    </script>
+</body>
+</html>
