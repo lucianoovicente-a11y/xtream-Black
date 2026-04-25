@@ -39,7 +39,8 @@ $host_dinamico = '//' . $_SERVER['HTTP_HOST'];
     <title><?php echo htmlspecialchars($config['title']); ?></title>
     <link rel="shortcut icon" href="<?php echo htmlspecialchars($config['logo_path']); ?>">
     
-    <!-- CSS FINAL DEFINITIVO - PRIMEIRO PARA GARANTIR PRIORIDADE -->
+    <!-- CSS ZOOM NUCLEAR - PRIMEIRO E COM PRIORIDADE MÁXIMA -->
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/fix-zoom-nuclear.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="/public/assets/css/layout-final-correcao.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="/public/assets/css/layout-final-definitivo.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="/css/layout-ultra-compacto.css?v=<?php echo time(); ?>">
@@ -110,7 +111,7 @@ $host_dinamico = '//' . $_SERVER['HTTP_HOST'];
 
             <div class="dropdown ms-2">
                 <button class="btn header-item waves-effect dropdown-toggle" type="button" id="dropdownUser" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #fff; font-size: 18px; font-weight: 700;">
-                    <img class="rounded-circle header-profile-user" src="<?php echo $host_dinamico; ?>/img/user.png" alt="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>" style="width: 35px; height: 32px;">
+                    <img class="rounded-circle header-profile-user" src="<?php echo $host_dinamico; ?>/img/logo.png" alt="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>" style="width: 35px; height: 32px;">
                     <span class="d-none d-xl-inline-block ms-1" style="color: #fff; font-size: 18px; font-weight: 700;"> <?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?> </span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
@@ -142,7 +143,7 @@ $host_dinamico = '//' . $_SERVER['HTTP_HOST'];
             <div class="justify-content-center align-items-center menu-perfil1">
                 <div class="mb-4 perfil-foto">
                     <div class="m-auto mb-1 rounded-circle overflow-hidden">
-                        <img class="img-fluid" src="<?php echo $host_dinamico; ?>/img/user.png" alt="">
+                        <img class="img-fluid" src="<?php echo $host_dinamico; ?>/img/logo.png" alt="">
                     </div>
                 </div>
                 <div class="text-center perfil-info" style="border-bottom: 1px solid var(--border-color);">

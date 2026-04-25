@@ -1,0 +1,204 @@
+/* 
+ * FIX ZOOM NUCLEAR - VERSÃO DEFINITIVA
+ * Força redução drástica de layout para evitar scroll horizontal e elementos gigantes
+ */
+
+/* 1. ZOOM GERAL NO BODY (Reduz tudo para 60%) */
+body, html, .wrapper, .content-wrapper, .main-footer {
+    zoom: 0.6 !important;
+    -moz-transform: scale(0.6);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.6);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.6);
+    -webkit-transform-origin: 0 0;
+    transform: scale(0.6);
+    transform-origin: 0 0;
+    font-family: 'Source Sans Pro', sans-serif !important;
+    font-size: 12px !important; /* Base recalculada pelo zoom */
+    overflow-x: hidden !important;
+}
+
+/* Ajuste para Webkit (Chrome/Safari) manter o layout fluido */
+@supports (-webkit-appearance: none) {
+    body, html, .wrapper, .content-wrapper {
+        zoom: 0.6 !important;
+    }
+}
+
+/* 2. TABELAS ULTRA COMPACTAS */
+.table, .dataTable, .table-responsive {
+    width: 100% !important;
+    table-layout: fixed !important; /* CRUCIAL: Impede colunas infinitas */
+    margin-bottom: 0 !important;
+    font-size: 10px !important;
+}
+
+.table thead > tr > th, 
+.table tbody > tr > td {
+    padding: 3px 5px !important;
+    vertical-align: middle !important;
+    font-size: 9px !important;
+    word-wrap: break-word !important;
+    white-space: normal !important; /* Permite quebra de linha */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    border: 1px solid #ddd !important;
+}
+
+/* Larguras específicas para colunas críticas */
+.th-id { width: 5% !important; }
+.th-user { width: 15% !important; max-width: 100px !important; }
+.th-ip { width: 12% !important; max-width: 90px !important; }
+.th-content { width: 25% !important; max-width: 200px !important; }
+.th-time { width: 10% !important; max-width: 80px !important; }
+.th-agent { width: 20% !important; max-width: 150px !important; display: none; /* Esconde user agent em telas menores */ }
+.th-action { width: 8% !important; text-align: center !important; }
+
+/* Esconder coluna User Agent em mobile/tablet se necessário */
+@media (max-width: 768px) {
+    .th-agent, td:nth-child(6) { display: none !important; }
+}
+
+/* 3. CARDS E CAIXAS MENORES */
+.box, .card, .info-box, .small-box {
+    margin-bottom: 10px !important;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1) !important;
+}
+
+.box-header, .card-header {
+    padding: 5px 10px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    border-bottom: 1px solid #f4f4f4 !important;
+}
+
+.box-body, .card-body {
+    padding: 8px !important;
+}
+
+.box-title, .card-title {
+    font-size: 12px !important;
+    margin: 0 !important;
+}
+
+/* 4. BOTÕES E INPUTS MINÚSCULOS */
+.btn, .btn-default, .btn-primary, .btn-danger {
+    padding: 2px 6px !important;
+    font-size: 9px !important;
+    line-height: 1.4 !important;
+    border-radius: 2px !important;
+    margin-right: 2px !important;
+}
+
+.form-control, input[type="text"], input[type="password"], select {
+    padding: 2px 5px !important;
+    font-size: 10px !important;
+    height: 28px !important;
+    border-radius: 2px !important;
+}
+
+/* 5. NAVBAR E MENU LATERAL */
+.main-header .navbar {
+    min-height: 40px !important;
+    height: 40px !important;
+}
+
+.main-header .logo {
+    width: 230px !important; /* Menu lateral mais estreito */
+    font-size: 14px !important;
+    line-height: 40px !important;
+}
+
+.sidebar-menu > li > a {
+    height: 35px !important;
+    line-height: 35px !important;
+    font-size: 11px !important;
+    padding-left: 10px !important;
+}
+
+.sidebar-menu li .treeview-menu {
+    padding-left: 5px !important;
+}
+
+/* 6. IMAGENS E LOGOS */
+.user-image, .img-circle {
+    width: 25px !important;
+    height: 25px !important;
+}
+
+.logo-lg img {
+    max-height: 30px !important;
+    width: auto !important;
+}
+
+/* 7. SCROLLBARS FINAS */
+::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1 !important;
+}
+::-webkit-scrollbar-thumb {
+    background: #888 !important;
+    border-radius: 3px !important;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555 !important;
+}
+
+/* 8. UTILITÁRIOS DE TEXTO */
+h1, h2, h3, h4, h5, h6 {
+    font-size: 14px !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+.badge, .label {
+    font-size: 8px !important;
+    padding: 2px 4px !important;
+}
+
+/* 9. DATA TABLES SPECIFIC FIXES */
+.dataTables_wrapper .dataTables_length, 
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+    font-size: 10px !important;
+    margin: 5px 0 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 2px 8px !important;
+    font-size: 9px !important;
+}
+
+/* 10. GARANTIR QUE O CONTAINER NÃO ESTOURE */
+.container-fluid, .container {
+    max-width: 100% !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.row {
+    margin-left: -5px !important;
+    margin-right: -5px !important;
+}
+
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1,
+.col-xs-2, .col-sm-2, .col-md-2, .col-lg-2,
+.col-xs-3, .col-sm-3, .col-md-3, .col-lg-3,
+.col-xs-4, .col-sm-4, .col-md-4, .col-lg-4,
+.col-xs-5, .col-sm-5, .col-md-5, .col-lg-5,
+.col-xs-6, .col-sm-6, .col-md-6, .col-lg-6,
+.col-xs-7, .col-sm-7, .col-md-7, .col-lg-7,
+.col-xs-8, .col-sm-8, .col-md-8, .col-lg-8,
+.col-xs-9, .col-sm-9, .col-md-9, .col-lg-9,
+.col-xs-10, .col-sm-10, .col-md-10, .col-lg-10,
+.col-xs-11, .col-sm-11, .col-md-11, .col-lg-11,
+.col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}

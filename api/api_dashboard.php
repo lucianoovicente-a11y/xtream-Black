@@ -48,7 +48,8 @@ $sql = "SELECT
             c.user_agent, 
             c.id,
             c.canal_atual AS canal_id,
-            COALESCE(c.serie_nome, '') AS serie_nome,
+            c.filme_nome,
+            c.serie_nome,
             c.tipo_stream,
             (SELECT COUNT(id) FROM conexoes WHERE usuario = c.usuario AND TIMESTAMPDIFF(MINUTE, ultima_atividade, NOW()) < 2) AS conexoes_total
         FROM conexoes AS c
@@ -92,16 +93,23 @@ foreach($result as $row) {
     
     $canal_id = $row['canal_id'];
     $tipo_stream = $row['tipo_stream'] ?? 'live';
+    $filme_nome = $row['filme_nome'] ?? '';
+    $serie_nome = $row['serie_nome'] ?? '';
     $nome_conteudo = 'Menu Principal';
     $tipo_conteudo = 'Desconhecido';
     $stream_icon = '';
     
-    // Se é episódio de série
-    if (!empty($row['serie_nome'])) {
-        $nome_conteudo = $row['serie_nome'];
+    // Prioridade 1: Se tem nome de filme
+    if (!empty($filme_nome)) {
+        $nome_conteudo = $filme_nome;
+        $tipo_conteudo = 'Filme';
+    }
+    // Prioridade 2: Se tem nome de série
+    elseif (!empty($serie_nome)) {
+        $nome_conteudo = $serie_nome;
         $tipo_conteudo = 'Serie';
     }
-    // Se tem canal_id, buscar nome
+    // Prioridade 3: Se tem canal_id, buscar nome
     elseif (!empty($canal_id) && $canal_id > 0) {
         // Primeiro tenta buscar na tabela streams
         $stmt_stream = $conn->prepare("SELECT name, stream_icon, stream_type FROM streams WHERE id = ?");
