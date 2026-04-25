@@ -40,7 +40,7 @@ try {
     sendFinalResponse(null, $response);
 }
 
-// Buscar todas as conexões ATIVAS (após limpeza)
+// Buscar apenas conexões ATIVAS REAIS (últimos 2 minutos)
 $sql = "SELECT 
             c.usuario, 
             c.ip, 
@@ -50,8 +50,9 @@ $sql = "SELECT
             c.canal_atual AS canal_id,
             COALESCE(c.serie_nome, '') AS serie_nome,
             c.tipo_stream,
-            (SELECT COUNT(id) FROM conexoes WHERE usuario = c.usuario) AS conexoes_total
+            (SELECT COUNT(id) FROM conexoes WHERE usuario = c.usuario AND TIMESTAMPDIFF(MINUTE, ultima_atividade, NOW()) < 2) AS conexoes_total
         FROM conexoes AS c
+        WHERE TIMESTAMPDIFF(MINUTE, c.ultima_atividade, NOW()) < 2
         ORDER BY c.ultima_atividade DESC";
 
 try {

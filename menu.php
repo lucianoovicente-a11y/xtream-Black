@@ -35,10 +35,12 @@ $host_dinamico = '//' . $_SERVER['HTTP_HOST'];
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title><?php echo htmlspecialchars($config['title']); ?></title>
     <link rel="shortcut icon" href="<?php echo htmlspecialchars($config['logo_path']); ?>">
     
+    <!-- CSS FINAL DEFINITIVO - PRIMEIRO PARA GARANTIR PRIORIDADE -->
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/layout-final-definitivo.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="/css/layout-ultra-compacto.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="/css/menu.css">
     <link rel="stylesheet" type="text/css" href="/css/retro.css">
