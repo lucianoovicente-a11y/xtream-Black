@@ -231,12 +231,12 @@ li.list a.clr span.icon i {
 {
 	visibility: visible;
 	opacity: 1;
-	font-size: 0.7em;
+	font-size: 0.6em;
 }
 .navigation ul li.active a .text 
 {
 	color: var(--bg);
-	font-size: 0.7em;
+	font-size: 0.6em;
 }
 
 
