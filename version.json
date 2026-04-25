@@ -1,0 +1,30 @@
+{
+    "version": "1.0.1",
+    "release_date": "2025-10-27",
+    "changelog_url": "https://github.com/seu-usuario/xtream-server/blob/main/CHANGELOG.md",
+    "download_url": "https://github.com/seu-usuario/xtream-server/archive/refs/tags/v1.0.1.zip",
+    "minimum_php_version": "7.4",
+    "features": [
+        "Controle de conexões simultâneas",
+        "Anti-sharing inteligente",
+        "API REST completa",
+        "Dashboard em tempo real",
+        "Sistema de tickets",
+        "Atualização automática via GitHub",
+        "Pagamentos integrados",
+        "Histórico de conexões do cliente"
+    ],
+    "bugs_fixed": [
+        "Correção tempo online clientes",
+        "Correção logo configurações",
+        "Melhoria no sistema de atualização"
+    ],
+    "breaking_changes": false,
+    "update_required": false,
+    "files": [
+        "classes/ConnectionManager.class.php",
+        "admin/auto_update.php",
+        "Clientes/area_cliente.php",
+        "includes/config.php"
+    ]
+}

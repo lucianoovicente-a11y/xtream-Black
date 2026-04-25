@@ -1,0 +1,146 @@
+# XTREAM SERVER OPENSOURCE - .htaccess
+
+# Habilitar Rewrite Engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Redirecionar para HTTPS (descomente se tiver SSL)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Forçar www (opcional)
+    # RewriteCond %{HTTP_HOST} !^www\. [NC]
+    # RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+</IfModule>
+
+# Prevenir listagem de diretórios
+Options -Indexes
+
+# Proteger arquivos sensíveis
+<FilesMatch "^\.">
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</FilesMatch>
+
+# Proteger arquivos de configuração e backup
+<FilesMatch "\.(env|sql|log|bak|config|ini)$">
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</FilesMatch>
+
+# Proteger diretórios sensíveis
+<IfModule mod_alias.c>
+    RedirectMatch 403 /logs
+    RedirectMatch 403 /backup
+    RedirectMatch 403 /\.git
+</IfModule>
+
+# Headers de segurança
+<IfModule mod_headers.c>
+    # Prevenir clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Prevenir MIME sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # XSS Protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Content Security Policy (ajuste conforme necessário)
+    # Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'self';"
+</IfModule>
+
+# Configurações de PHP
+<IfModule mod_php.c>
+    php_value upload_max_filesize 2G
+    php_value post_max_size 2G
+    php_value max_execution_time 3600
+    php_value max_input_time 3600
+    php_value memory_limit 512M
+    
+    # Desabilitar exibição de erros em produção
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value error_log logs/php_errors.log
+    
+    # Desabilitar registro de URLs
+    php_flag expose_php Off
+</IfModule>
+
+# Cache para arquivos estáticos
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Imagens
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    
+    # CSS e JavaScript
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType text/javascript "access plus 1 week"
+    
+    # Fontes
+    ExpiresByType font/woff2 "access plus 1 month"
+    ExpiresByType font/woff "access plus 1 month"
+    ExpiresByType font/ttf "access plus 1 month"
+</IfModule>
+
+# Compressão GZIP
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Prevenir hotlinking de imagens (opcional)
+# <IfModule mod_rewrite.c>
+#     RewriteCond %{HTTP_REFERER} !^$
+#     RewriteCond %{HTTP_REFERER} !^https?://(www\.)?seu-dominio\.com [NC]
+#     RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [F,NC,L]
+# </IfModule>
+
+# Páginas de erro personalizadas (opcional)
+# ErrorDocument 404 /error404.php
+# ErrorDocument 403 /error403.php
+# ErrorDocument 500 /error500.php
+
+# Charset padrão
+AddDefaultCharset UTF-8
+
+# Tipos MIME
+<IfModule mod_mime.c>
+    AddType application/javascript js
+    AddType application/json json
+    AddType image/webp webp
+    AddType video/mp4 mp4
+    AddType video/x-matroska mkv
+    AddType audio/mpeg mp3
+</IfModule>
+
+# Limitar tamanho de requisição (bytes)
+# <LimitRequestBody>
+#     2147483648
+# </LimitRequestBody>
