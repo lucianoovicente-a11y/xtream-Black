@@ -1,0 +1,409 @@
+/* ============================================
+   LAYOUT ULTRA COMPACTO - XTREAM SERVER
+   Força tabelas estreitas e fontes pequenas
+   ============================================ */
+
+/* FORÇA zoom normal e previne放大 */
+html {
+    font-size: 10px !important;
+    zoom: 0.85 !important;
+}
+
+body {
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+    overflow-x: hidden !important;
+}
+
+/* Container principal sem padding excessivo */
+.container-fluid {
+    max-width: 100% !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+/* TABELAS ULTRA COMPACTAS */
+.table,
+.dataTables_wrapper table,
+table.dataTable {
+    font-size: 9px !important;
+    width: 100% !important;
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+}
+
+.table th,
+.table td,
+.dataTables_wrapper th,
+.dataTables_wrapper td {
+    padding: 2px 4px !important;
+    font-size: 9px !important;
+    line-height: 1.1 !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    max-width: 100px !important;
+    vertical-align: middle !important;
+}
+
+/* Colunas específicas com larguras controladas */
+.table th:nth-child(1), .table td:nth-child(1) { max-width: 40px !important; width: 40px !important; }
+.table th:nth-child(2), .table td:nth-child(2) { max-width: 120px !important; width: 120px !important; }
+.table th:nth-child(3), .table td:nth-child(3) { max-width: 100px !important; width: 100px !important; }
+.table th:nth-child(4), .table td:nth-child(4) { max-width: 80px !important; width: 80px !important; }
+.table th:nth-child(5), .table td:nth-child(5) { max-width: 90px !important; width: 90px !important; }
+.table th:nth-child(6), .table td:nth-child(6) { max-width: 70px !important; width: 70px !important; }
+.table th:nth-child(7), .table td:nth-child(7) { max-width: 60px !important; width: 60px !important; }
+.table th:nth-child(8), .table td:nth-child(8) { max-width: 80px !important; width: 80px !important; }
+
+/* Headers da tabela */
+.table thead th {
+    background: #1a1a2e !important;
+    color: #ff6b35 !important;
+    font-weight: 700 !important;
+    font-size: 8.5px !important;
+    text-transform: uppercase !important;
+    padding: 4px 6px !important;
+    border-bottom: 2px solid #ff6b35 !important;
+}
+
+/* Linhas da tabela */
+.table tbody tr {
+    border-bottom: 1px solid #2a2a3e !important;
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 107, 53, 0.1) !important;
+}
+
+/* Cards do dashboard menores */
+.card, .info-box, .stat-card {
+    padding: 6px !important;
+    margin-bottom: 8px !important;
+    font-size: 9px !important;
+}
+
+.card-header, .card-body {
+    padding: 6px !important;
+    font-size: 9px !important;
+}
+
+.card-title, .info-box-title {
+    font-size: 10px !important;
+    margin-bottom: 4px !important;
+    font-weight: 600 !important;
+}
+
+.card-text, .info-box-text {
+    font-size: 9px !important;
+}
+
+/* Números grandes dos cards */
+.card .display-4, .info-box .number {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    margin: 4px 0 !important;
+}
+
+/* Ícones menores */
+.card .icon, .info-box .icon {
+    font-size: 16px !important;
+    width: 30px !important;
+    height: 30px !important;
+    line-height: 30px !important;
+}
+
+/* Botões mínimos */
+.btn, .btn-sm, .btn-xs {
+    padding: 2px 6px !important;
+    font-size: 8px !important;
+    margin: 1px !important;
+    line-height: 1 !important;
+}
+
+.btn i, .btn-sm i {
+    font-size: 8px !important;
+}
+
+/* Formulários compactos */
+.form-control, .form-select, input, select, textarea {
+    padding: 3px 6px !important;
+    font-size: 9px !important;
+    height: auto !important;
+    min-height: 24px !important;
+}
+
+.form-label, label {
+    font-size: 8.5px !important;
+    margin-bottom: 2px !important;
+    font-weight: 600 !important;
+}
+
+.form-group {
+    margin-bottom: 6px !important;
+}
+
+/* Badges tiny */
+.badge, .badge-pill {
+    font-size: 7px !important;
+    padding: 2px 5px !important;
+    font-weight: 600 !important;
+}
+
+/* DataTables wrapper compacto */
+.dataTables_wrapper {
+    font-size: 9px !important;
+    padding: 0 !important;
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+    font-size: 8.5px !important;
+    margin: 4px 0 !important;
+    padding: 2px !important;
+}
+
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    padding: 2px 4px !important;
+    font-size: 8.5px !important;
+    height: 24px !important;
+    min-width: 50px !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 2px 6px !important;
+    margin: 0 1px !important;
+    font-size: 8.5px !important;
+    min-width: 24px !important;
+    height: 24px !important;
+    line-height: 20px !important;
+}
+
+/* Navbar minimalista */
+.navbar {
+    min-height: 40px !important;
+    padding: 4px 8px !important;
+}
+
+.navbar-brand {
+    font-size: 14px !important;
+    padding: 4px 8px !important;
+}
+
+.nav-link {
+    padding: 4px 8px !important;
+    font-size: 9px !important;
+}
+
+/* Dropdowns compactos */
+.dropdown-menu {
+    font-size: 9px !important;
+    padding: 4px 0 !important;
+    min-width: 120px !important;
+}
+
+.dropdown-item {
+    padding: 4px 12px !important;
+    font-size: 9px !important;
+}
+
+/* Menu lateral fino */
+.navigation {
+    width: 180px !important;
+    font-size: 9px !important;
+}
+
+.navigation ul li a {
+    padding: 6px 8px !important;
+    font-size: 9px !important;
+}
+
+.navigation ul li a .text {
+    font-size: 9px !important;
+    padding-left: 8px !important;
+}
+
+.navigation ul li a .icon {
+    font-size: 12px !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+
+/* Sidebar submenu */
+.sidebar-submenu ul li a {
+    font-size: 8.5px !important;
+    padding: 4px 8px 4px 28px !important;
+}
+
+/* Conteúdo principal */
+main.page-content, .page-content {
+    padding: 8px !important;
+    margin-top: 45px !important;
+}
+
+/* Alerts pequenos */
+.alert {
+    padding: 6px 10px !important;
+    font-size: 9px !important;
+    margin-bottom: 6px !important;
+    border-radius: 4px !important;
+}
+
+/* Modais compactos */
+.modal-dialog {
+    margin: 10px auto !important;
+    max-width: 500px !important;
+}
+
+.modal-header, .modal-footer {
+    padding: 6px 10px !important;
+    font-size: 9px !important;
+}
+
+.modal-body {
+    padding: 8px !important;
+    font-size: 9px !important;
+}
+
+.modal-title {
+    font-size: 11px !important;
+}
+
+/* Tabs mínimas */
+.nav-tabs .nav-link {
+    padding: 4px 8px !important;
+    font-size: 9px !important;
+}
+
+/* Breadcrumbs tiny */
+.breadcrumb {
+    padding: 4px 8px !important;
+    margin-bottom: 4px !important;
+    font-size: 8.5px !important;
+}
+
+.breadcrumb-item {
+    font-size: 8.5px !important;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    font-size: 8.5px !important;
+    padding: 0 4px !important;
+}
+
+/* Progress bars finas */
+.progress {
+    height: 6px !important;
+    margin-bottom: 4px !important;
+    font-size: 7px !important;
+}
+
+/* Scrollbars finas */
+::-webkit-scrollbar {
+    width: 4px !important;
+    height: 4px !important;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a2e !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff6b35 !important;
+    border-radius: 2px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff8c5a !important;
+}
+
+/* Media queries para telas menores */
+@media (max-width: 768px) {
+    html {
+        font-size: 9px !important;
+        zoom: 0.8 !important;
+    }
+    
+    .navigation {
+        width: 160px !important;
+    }
+    
+    .table th, .table td {
+        padding: 2px 3px !important;
+        font-size: 8.5px !important;
+        max-width: 80px !important;
+    }
+}
+
+/* Utilitários de largura */
+.w-tiny { width: 50px !important; }
+.w-small { width: 80px !important; }
+.w-medium { width: 120px !important; }
+
+/* Quebra de texto forçada */
+.text-wrap-forced {
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+}
+
+/* Esconder elementos menos importantes em telas pequenas */
+.hide-mobile {
+    display: none !important;
+}
+
+@media (min-width: 769px) {
+    .hide-desktop {
+        display: none !important;
+    }
+}
+
+/* Ajustes específicos para a página de clientes online */
+.clientes-online-table th,
+.clientes-online-table td {
+    max-width: 90px !important;
+    font-size: 8.5px !important;
+    padding: 3px 5px !important;
+}
+
+/* Status badges */
+.status-badge {
+    display: inline-block;
+    padding: 2px 6px !important;
+    font-size: 7.5px !important;
+    border-radius: 3px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+}
+
+/* Tempo online */
+.time-online {
+    font-family: monospace !important;
+    font-size: 8.5px !important;
+    font-weight: 600 !important;
+}
+
+/* Nome do canal/filme */
+.content-name {
+    max-width: 150px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: block !important;
+    white-space: nowrap !important;
+}
+
+/* Ações da tabela */
+.table-actions {
+    white-space: nowrap !important;
+    min-width: 80px !important;
+}
+
+.table-actions .btn {
+    padding: 1px 4px !important;
+    font-size: 7.5px !important;
+}

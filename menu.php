@@ -39,6 +39,7 @@ $host_dinamico = '//' . $_SERVER['HTTP_HOST'];
     <title><?php echo htmlspecialchars($config['title']); ?></title>
     <link rel="shortcut icon" href="<?php echo htmlspecialchars($config['logo_path']); ?>">
     
+    <link rel="stylesheet" type="text/css" href="/css/layout-ultra-compacto.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="/css/menu.css">
     <link rel="stylesheet" type="text/css" href="/css/retro.css">
     <link rel="stylesheet" type="text/css" href="/css/layout-compacto-global.css">
