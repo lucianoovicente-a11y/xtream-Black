@@ -1,0 +1,37 @@
+Seu Acesso foi criado com sucesso!
+
+👤 *Usuário:* #username#
+🔑 *Senha:* #password#
+🗓 *Valido até:* #exp_date#
+
+📡 * *URL/Port:* #url#
+
+❇ *DNS*
+✳ *URL/Port:* #url#
+
+🔰 *Área do cliente* 
+🔗 #url#/cliente
+
+💰 *Após realizar o pagamento pela ( Área do cliente ), o seu usuário será renovado automaticamente pelo sistema!*
+
+🟢 *Link M3U:* #m3u_link#
+
+🟡 *Link M3U HLS:* #m3u_link_hls#
+
+🟣 *Link M3U Encurtado:* #m3u_encurtado#
+
+🔵 *Link SSIPTV encurtado:* #ssiptv_encurtado#
+
+🛍 *Loja de aplicativos:* https://iptv.qualidade.cloud/loja/loja
+
+🌐 *BAIXAR APLICATIVO APK ( LINK DIRETO NAVEGADOR )*
+🛒 https://iptv.qualidade.cloud/loja/loja
+
+⚡ *APLICATIVOS PLAY STORE*
+🅰️ IBO Temas
+🅱️ YOUTUBE Premium
+
+♻ *Programa pra Computador IPTV*
+🌎️ em construção
+
+ATT: X BLACK
