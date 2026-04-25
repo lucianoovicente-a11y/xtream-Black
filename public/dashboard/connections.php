@@ -507,3 +507,120 @@ try {
     <script src="/public/assets/js/connections-live.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
+
+<!-- CSS FORÇADO PARA LAYOUT COMPACTO - APLICAR NO FINAL -->
+<style>
+/* TABELAS GERAIS - FORÇAR COMPACTAÇÃO */
+.table-responsive table, 
+.connection-table table,
+.dataTables_wrapper table {
+    width: 100% !important;
+    font-size: 11px !important;
+    table-layout: fixed !important; /* IMPRESCINDÍVEL: Evita estouro lateral */
+}
+
+.table-responsive th, .table-responsive td,
+.connection-table th, .connection-table td,
+.dataTables_wrapper th, .dataTables_wrapper td {
+    padding: 3px 5px !important;
+    word-wrap: break-word !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal !important;
+    vertical-align: middle;
+    line-height: 1.2;
+}
+
+/* COLUNAS ESPECÍFICAS DA TABELA DE CONEXÕES */
+.connection-table th:nth-child(1), .connection-table td:nth-child(1) { width: 5%; } /* ID */
+.connection-table th:nth-child(2), .connection-table td:nth-child(2) { width: 15%; } /* Usuário */
+.connection-table th:nth-child(3), .connection-table td:nth-child(3) { width: 12%; } /* Conexões Ativas */
+.connection-table th:nth-child(4), .connection-table td:nth-child(4) { width: 12%; } /* Limite */
+.connection-table th:nth-child(5), .connection-table td:nth-child(5) { width: 18%; } /* Uso barra */
+.connection-table th:nth-child(6), .connection-table td:nth-child(6) { width: 38%; text-align: center; } /* Ações */
+
+/* COLUNAS DA TABELA EM TEMPO REAL (se houver) */
+#connectionsTable th:nth-child(1), #connectionsTable td:nth-child(1) { width: 4%; } /* ID */
+#connectionsTable th:nth-child(2), #connectionsTable td:nth-child(2) { width: 12%; } /* Usuário */
+#connectionsTable th:nth-child(3), #connectionsTable td:nth-child(3) { width: 11%; } /* IP */
+#connectionsTable th:nth-child(4), #connectionsTable td:nth-child(4) { width: 13%; } /* Dispositivo */
+#connectionsTable th:nth-child(5), #connectionsTable td:nth-child(5) { width: 7%; } /* Tipo */
+#connectionsTable th:nth-child(6), #connectionsTable td:nth-child(6) { width: 28%; max-width: 250px; } /* Conteúdo */
+#connectionsTable th:nth-child(7), #connectionsTable td:nth-child(7) { width: 10%; } /* Tempo */
+#connectionsTable th:nth-child(8), #connectionsTable td:nth-child(8) { width: 7%; } /* Status */
+#connectionsTable th:nth-child(9), #connectionsTable td:nth-child(9) { width: 8%; text-align: center; } /* Ações */
+
+/* DATATABLES CONTROLS */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+    font-size: 10px !important;
+    margin: 2px 0 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 1px 6px !important;
+    font-size: 9px !important;
+    margin: 0 1px !important;
+}
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    padding: 2px 4px !important;
+    font-size: 10px !important;
+    height: 28px !important;
+}
+
+/* CARDS E CONTENEDORES */
+.card {
+    margin-bottom: 15px !important;
+}
+.card-header {
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+}
+.card-body {
+    padding: 10px !important;
+}
+
+/* BOTÕES MENORES */
+.btn, .btn-sm {
+    padding: 2px 8px !important;
+    font-size: 10px !important;
+    line-height: 1.5 !important;
+}
+
+/* BARRA DE PROGRESSO COMPACTA */
+.progress {
+    height: 12px !important;
+    font-size: 9px !important;
+}
+
+/* SCROLLBAR FINA */
+.table-responsive::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+}
+</style>
+
+<script>
+// Forçar recarregamento do DataTables com configurações compactas
+$(document).ready(function() {
+    if ($.fn.DataTable.isDataTable('.table')) {
+        $('.table').DataTable().destroy();
+    }
+    $('.table').DataTable({
+        "pageLength": 10,
+        "lengthMenu": [5, 10, 25, 50],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese.json"
+        },
+        "dom": '<\"top\"lf>rt<\"bottom\"ip><\"clear\">',
+        "scrollX": false // Desativa scroll horizontal forçado
+    });
+});
+</script>

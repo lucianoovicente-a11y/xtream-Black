@@ -76,6 +76,8 @@ $host_dinamico = '//' . $_SERVER['HTTP_HOST'];
             .navigation:not(.active) { width: 0; overflow: hidden; border-right: none; }
         }
     </style>
+    <!-- CSS Compacto Global -->
+    <link rel="stylesheet" type="text/css" href="/public/css/layout-compacto-global.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="/public/assets/css/layout-compacto.css?v=<?php echo time(); ?>">
 </head>
 <body>
