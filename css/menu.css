@@ -73,6 +73,7 @@ html, body {
 	list-style: none;
 	position: relative;
 	width: 100%;
+	max-width: 190px;
 	border-radius: 12px;
 	transition: 0.5s;
 	border: 8px solid transparent;
@@ -218,7 +219,7 @@ li.list a.clr span.icon i {
 .navigation ul li a .text 
 {
 	position: relative;
-	padding: 0 15px;
+	padding: 0 10px;
 	height: 30px;
 	color: var(--bs-secondary);
 	display: flex;
@@ -231,12 +232,12 @@ li.list a.clr span.icon i {
 {
 	visibility: visible;
 	opacity: 1;
-	font-size: 0.6em;
+	font-size: 0.5em;
 }
 .navigation ul li.active a .text 
 {
 	color: var(--bg);
-	font-size: 0.6em;
+	font-size: 0.5em;
 }
 
 
@@ -254,7 +255,7 @@ main.page-content {
 }
 
 main.page-content.active {
-    padding-left: 290px;
+    padding-left: 210px;
     transition: 0.5s;
 }
 
