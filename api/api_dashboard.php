@@ -14,6 +14,13 @@ function sendFinalResponse($conn, $response) {
 }
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/api/controles/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/classes/ConnectionManager.class.php');
+
+// Inicializa o gerenciador de conexões
+$cm = new ConnectionManager();
+
+// Limpa conexões mortas ANTES de buscar os dados
+$cm->cleanupDeadConnections();
 
 $response = [
     'online_count' => 0,
@@ -33,7 +40,7 @@ try {
     sendFinalResponse(null, $response);
 }
 
-// Buscar todas as conexões
+// Buscar todas as conexões ATIVAS (após limpeza)
 $sql = "SELECT 
             c.usuario, 
             c.ip, 
