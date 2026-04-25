@@ -1,0 +1,148 @@
+/* 
+ * XTREAM SERVER - LAYOUT COMPACTO FORÇADO v2.0
+ * Objetivo: Reduzir tudo, eliminar scroll horizontal e corrigir cortes laterais.
+ */
+
+:root {
+    --font-size-base: 11px !important; /* Fonte bem pequena */
+    --font-size-title: 13px !important;
+    --spacing-unit: 4px !important;
+    --card-padding: 8px !important;
+    --table-cell-padding: 4px 6px !important;
+}
+
+/* Reset Geral de Fontes e Boxes */
+body, html, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    font-size: var(--font-size-base) !important;
+    box-sizing: border-box !important;
+}
+
+/* Container Principal - Impede estouro lateral */
+.content-wrapper, .main-content, #page-wrapper, .container-fluid, .row {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    margin: 0 auto !important;
+}
+
+/* Cards e Painéis - Redução drástica */
+.card, .panel, .ibox, .stat-panel {
+    padding: var(--card-padding) !important;
+    margin-bottom: 10px !important;
+    font-size: var(--font-size-base) !important;
+}
+
+.card-header, .panel-heading, .ibox-title {
+    padding: 6px 10px !important;
+    font-size: var(--font-size-title) !important;
+    font-weight: bold !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.card-body, .panel-body, .ibox-content {
+    padding: 8px !important;
+}
+
+/* TABELAS - Ajuste Crítico para não cortar */
+.table, .dataTable {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 10px !important; /* Fonte minúscula para caber mais */
+    table-layout: auto !important; /* Ajusta colunas automaticamente */
+}
+
+.table th, .table td, .dataTable th, .dataTable td {
+    padding: var(--table-cell-padding) !important;
+    vertical-align: middle !important;
+    word-break: break-word !important; /* Quebra texto longo */
+    max-width: 200px !important; /* Limita largura máxima da célula */
+    white-space: normal !important; /* Permite quebra de linha */
+    line-height: 1.2 !important;
+}
+
+/* DataTables Específico */
+.dataTables_wrapper .dataTables_length, 
+.dataTables_wrapper .dataTables_filter, 
+.dataTables_wrapper .dataTables_info, 
+.dataTables_wrapper .dataTables_processing, 
+.dataTables_wrapper .dataTables_paginate {
+    font-size: 10px !important;
+    margin: 2px 0 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 2px 6px !important;
+    font-size: 9px !important;
+}
+
+/* Botões Compactos */
+.btn, .button {
+    padding: 3px 8px !important;
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+    margin-right: 2px !important;
+    margin-bottom: 2px !important;
+}
+
+.btn-sm, .btn-xs {
+    padding: 1px 4px !important;
+    font-size: 9px !important;
+}
+
+/* Formulários Compactos */
+.form-control, input, select, textarea {
+    padding: 4px 6px !important;
+    font-size: 11px !important;
+    height: auto !important;
+    min-height: 28px !important;
+}
+
+.form-group {
+    margin-bottom: 8px !important;
+}
+
+label {
+    font-size: 10px !important;
+    margin-bottom: 2px !important;
+    font-weight: 600 !important;
+}
+
+/* Títulos Gerais */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+    line-height: 1.2 !important;
+}
+
+h1 { font-size: 16px !important; }
+h2 { font-size: 14px !important; }
+h3 { font-size: 13px !important; }
+
+/* Sidebar Menu - Ajuste fino */
+.sidebar .nav-item .nav-link {
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+}
+
+/* Scrollbar Fina */
+::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+}
+::-webkit-scrollbar-thumb {
+    background: #ccc !important;
+    border-radius: 3px !important;
+}
+
+/* Utilitários de Texto */
+.text-small { font-size: 10px !important; }
+.text-tiny { font-size: 9px !important; }
+
+/* Correção específica para tabelas de conexões online */
+.table-responsive {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+}

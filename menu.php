@@ -76,6 +76,7 @@ $host_dinamico = '//' . $_SERVER['HTTP_HOST'];
             .navigation:not(.active) { width: 0; overflow: hidden; border-right: none; }
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/layout-compacto.css?v=<?php echo time(); ?>">
 </head>
 <body>
 <header class="fixed-top navbar navbar-expand-lg" style="transition: 0.5s; padding: 0;">

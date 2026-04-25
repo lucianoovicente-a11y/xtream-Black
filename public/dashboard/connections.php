@@ -72,7 +72,7 @@ try {
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/layout-compacto-global.css">
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/layout-compacto.css?v=<?php echo time(); ?>">
     <style>
         .stats-card {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -504,5 +504,6 @@ try {
             });
         }
     </script>
+    <script src="/public/assets/js/connections-live.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
