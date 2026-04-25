@@ -73,11 +73,11 @@ html, body {
 	list-style: none;
 	position: relative;
 	width: 100%;
-	max-width: 170px; /* Diminuído mais um pouco para evitar cortes */
+	max-width: 150px; /* Reduzido para caber melhor na tela */
 	border-radius: 12px;
 	transition: 0.5s;
 	border: 8px solid transparent;
-	margin-left: 20px; /* Aumentado para jogar o menu mais para fora/direita */
+	margin-left: 30px; /* Aumentado para jogar mais para fora/direita */
 }
 .navigation ul li.active
 {
@@ -233,12 +233,12 @@ li.list a.clr span.icon i {
 {
 	visibility: visible;
 	opacity: 1;
-	font-size: 0.45em; /* Diminuído mais um pouco */
+	font-size: 0.4em; /* Fonte reduzida */
 }
 .navigation ul li.active a .text 
 {
 	color: var(--bg);
-	font-size: 0.45em; /* Diminuído mais um pouco */
+	font-size: 0.4em; /* Fonte reduzida */
 }
 
 
