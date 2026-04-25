@@ -49,23 +49,16 @@ class DB
 	// }
 	public function getConnection()
 	{
-
-		$db = new PDO("sqlite:".__DIR__."/database.sql");
-		
 		try {
 			if (!isset($this->connection)) {
 				$this->connection = new PDO("sqlite:".__DIR__."/data.sqlite");
 				$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			}
 		} catch (PDOException $e) {
-			if (debugEnabled()) {
-				exit("Failed to connect to DB: " . $e->getMessage());
-			}
+			exit("Failed to connect to DB: " . $e->getMessage());
 			return NULL;
 		} catch (Exception $d) {
-			if (debugEnabled()) {
-				exit("Failed to connect to DB: " . $d->getMessage());
-			}
+			exit("Failed to connect to DB: " . $d->getMessage());
 			return NULL;
 		}
 		return $this->connection;
