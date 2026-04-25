@@ -1,0 +1,40 @@
+<?php
+/**
+ * DESENVOLVIDO POR Newtec - WhatsApp: https://wa.me/5545991498688
+ */
+session_start();
+
+require("../../configuracoes/functions.php");
+require("../../autoload.php");
+
+if (isset($_POST['user_nome']) && isset($_POST['user_email']) && isset($_POST['user_senha']) && isset($_POST['user_id'])) {
+	$user = new Usuarios();
+
+	$info = $user->info_user_logado();
+
+	if ($info["user_info"]["nivel"] != 1) {
+		echo json_encode(["status" => false, "msg" => "Você não está autorizado a fazer essa ação"]);
+	}
+
+	$user_nome    = $_POST['user_nome'];
+	$user_email   = trim($_POST['user_email']);
+	$user_senha   = $_POST['user_senha'];
+	$nivel_acesso = isset($_POST['nivel_acesso']) ? intval($_POST['nivel_acesso']) : 1;
+	$user_id      = intval($_POST['user_id']);
+
+	if (empty($user_nome)) {
+		echo json_encode(["status" => false, "msg" => "O campo nome não pode está em branco!"]); die();
+	}
+
+	if (empty($user_email)) {
+		echo json_encode(["status" => false, "msg" => "O campo email não pode está em branco!"]); die();
+	}
+
+
+	$response = $user->editar_usuario($user_nome, $user_email, $user_senha, $nivel_acesso, $user_id);
+	echo json_encode($response);
+}
+
+
+
+?>
