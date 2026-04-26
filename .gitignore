@@ -1,5 +1,1 @@
-```
-# Compiled and build artifacts
-*.class
-classes/
-```
+Nothing should be ignored based on the provided file changes, which only include source code files (`autoload.php`, `classes/Logger.class.php`). No build artifacts, dependencies, or temporary files are present in the changes.

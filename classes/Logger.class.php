@@ -10,6 +10,11 @@ class Logger {
     private $currentDate;
     
     private function __construct() {
+        // Define PATH_LOGS se não estiver definido
+        if (!defined('PATH_LOGS')) {
+            define('PATH_LOGS', BASE_DIR . '/logs/');
+        }
+        
         $this->logDir = PATH_LOGS;
         $this->currentDate = date('Y-m-d');
         
