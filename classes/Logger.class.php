@@ -9,7 +9,12 @@ class Logger {
     private $logDir;
     private $currentDate;
     
-    private function __construct() {
+    public function __construct($context = 'system') {
+        // Define BASE_DIR se não estiver definido
+        if (!defined('BASE_DIR')) {
+            define('BASE_DIR', dirname(__DIR__));
+        }
+        
         // Define PATH_LOGS se não estiver definido
         if (!defined('PATH_LOGS')) {
             define('PATH_LOGS', BASE_DIR . '/logs/');
@@ -17,6 +22,7 @@ class Logger {
         
         $this->logDir = PATH_LOGS;
         $this->currentDate = date('Y-m-d');
+        $this->context = $context;
         
         // Garantir que o diretório de logs existe
         if (!is_dir($this->logDir)) {
@@ -24,9 +30,9 @@ class Logger {
         }
     }
     
-    public static function getInstance() {
+    public static function getInstance($context = 'system') {
         if (self::$instance === null) {
-            self::$instance = new self();
+            self::$instance = new self($context);
         }
         return self::$instance;
     }
