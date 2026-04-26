@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Não Encontrada - 404</title>
+    <title>404 - Página Não Encontrada</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,36 +12,33 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f4f6f9;
-            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
         .container {
             text-align: center;
-            padding: 40px;
         }
-        h1 {
-            font-size: 72px;
-            margin: 0;
-            color: #dc3545;
-        }
-        p {
-            font-size: 24px;
-            margin: 20px 0;
-        }
+        h1 { font-size: 6rem; margin: 0; }
+        h2 { font-size: 2rem; margin: 20px 0; }
+        p { font-size: 1.2rem; opacity: 0.8; }
         a {
-            color: #007bff;
+            color: white;
             text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
         }
-        a:hover {
-            text-decoration: underline;
-        }
+        a:hover { background: white; color: #667eea; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>404</h1>
-        <p>Página não encontrada</p>
-        <p><a href="/">Voltar para a página inicial</a></p>
+        <h2>Página Não Encontrada</h2>
+        <p>O arquivo solicitado não existe no servidor.</p>
+        <a href="/">Voltar ao Início</a>
     </div>
 </body>
 </html>
