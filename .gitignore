@@ -1,18 +1,1 @@
-```
-# Compiled and build artifacts
-*.class.php
-
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-
-# Environment
-.env
-.env.local
-.env.*
-
-# Editors
-.vscode/
-.idea/
-```
+Nothing needs to be added to .gitignore since the only change is adding a PHP source file (`actions/login/auth.php`) which is a source code file that should not be ignored.
