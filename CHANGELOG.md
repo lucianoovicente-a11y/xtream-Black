@@ -203,7 +203,7 @@ Este projeto segue o versionamento semântico:
 - **Repositório:** [GitHub](https://github.com/seu-repositorio/xtream-server)
 - **Grupo Telegram:** [@xtreamserveropengrupo](https://t.me/xtreamserveropengrupo)
 - **Canal Telegram:** [@xtreamserveropen](https://t.me/xtreamserveropen)
-- **Dev:** [@FURIA401](https://t.me/FLAVIO401)
+- **Dev:** Luciano Vicente - 21971877485
 
 ---
 

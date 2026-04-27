@@ -50,7 +50,7 @@ ini_set('memory_limit', '512M');
 // Constantes do sistema
 define('SYSTEM_NAME', 'XTREAM SERVER OPENSOURCE');
 define('SYSTEM_VERSION', '1.0.0');
-define('SYSTEM_AUTHOR', '@FURIA401');
+define('SYSTEM_AUTHOR', 'Luciano Vicente - 21971877485');
 define('DEFAULT_CREDITS', 0);
 define('DEFAULT_PLAN', 4);
 

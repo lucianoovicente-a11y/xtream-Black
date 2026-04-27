@@ -210,14 +210,14 @@ crontab -e
 
 - **Grupo Telegram:** [@xtreamserveropengrupo](https://t.me/xtreamserveropengrupo)
 - **Canal Telegram:** [@xtreamserveropen](https://t.me/xtreamserveropen)
-- **Dev:** [@FURIA401](https://t.me/FLAVIO401)
+- **Dev:** Luciano Vicente - 21971877485
 
 ---
 
 ## 💝 COMO APOIAR
 
 - **PIX:** `877eac58-cedc-400b-b91f-db8681ac8923`
-- **Mercado Pago:** [Link de Doação](https://link.mercadopago.com.br/furiaplayer)
+- **Mercado Pago:** [Link de Doação](https://link.mercadopago.com.br/lucianovicente)
 
 ---
 

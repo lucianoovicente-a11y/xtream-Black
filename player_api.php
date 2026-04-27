@@ -93,8 +93,8 @@ if (isset($_GET['username']) && isset($_GET['password']) && !isset($_GET['action
             'allowed_output_formats' => array('m3u8', 'ts', 'rtmp')
         ),
         'server_info' => array(
-            'painel' => 'FURIA XTREAM',
-            'version' => '0.0.1',
+            'painel' => 'LUCIANO XTREAM',
+            'version' => '1.0.0',
             'revision' => 1,
             'url' => $_SERVER['HTTP_HOST'],
             'port' => $_SERVER['SERVER_PORT'],

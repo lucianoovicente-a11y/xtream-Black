@@ -698,7 +698,7 @@ document.getElementById('kickAllButton').addEventListener('click', async functio
 });
 
 atualizarDados();
-setInterval(atualizarDados, 5000);
+setInterval(atualizarDados, 180000); // Refresh de 3 em 3 minutos (180000ms)
 </script>
 
 </main>
