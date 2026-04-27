@@ -417,11 +417,11 @@ $logo_path = $config['logo_path'] ?? './img/logo.png';
 
             <!-- Login Form -->
             <form id="loginForm">
-                <!-- Email Field -->
+                <!-- Username Field -->
                 <div class="form-group">
-                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                    <label for="username"><i class="fas fa-user"></i> Usuário</label>
                     <div class="input-wrapper">
-                        <input type="email" id="email" name="email" class="form-control" placeholder="seu@email.com" required autocomplete="email">
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Digite seu usuário" value="admin" required autocomplete="username">
                         <i class="fas fa-user"></i>
                     </div>
                 </div>
@@ -430,7 +430,7 @@ $logo_path = $config['logo_path'] ?? './img/logo.png';
                 <div class="form-group">
                     <label for="password"><i class="fas fa-lock"></i> Senha</label>
                     <div class="input-wrapper">
-                        <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" value="admin" required autocomplete="current-password">
                         <i class="fas fa-key"></i>
                     </div>
                 </div>
