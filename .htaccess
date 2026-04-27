@@ -12,7 +12,18 @@
     # Forçar www (opcional)
     # RewriteCond %{HTTP_HOST} !^www\. [NC]
     # RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+    # URLs amigáveis para o sistema
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^home$ home.php [L,QSA]
+    RewriteRule ^dashboard$ dashboard.php [L,QSA]
+    RewriteRule ^login$ index.php [L,QSA]
+    RewriteRule ^logout$ logout.php [L,QSA]
 </IfModule>
+
+# Configurar página de erro personalizada para erro 500
+ErrorDocument 500 /error500.php
 
 # Prevenir listagem de diretórios
 Options -Indexes

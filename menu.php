@@ -6,8 +6,10 @@ if (file_exists($config_file)) {
     $config = json_decode(file_get_contents($config_file), true);
 } else {
     $config = [
-        'title' => 'FÊNIX PLAY TV',
-        'logo_path' => './img/logo.png'
+        'title' => 'LUCIANO XTREAM',
+        'logo_path' => './img/logo.png',
+        'whatsapp' => '5521971877485',
+        'author' => 'Luciano Vicente - 21971877485'
     ];
 }
 
